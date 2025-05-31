@@ -1,0 +1,175 @@
+@import './variables';
+
+.header {
+  background-color: $color-bg;
+  @include flex-center(row, space-between, center);
+  padding: $padding-default;
+  box-shadow: $box-shadow-default;
+
+  .container {
+    @include flex-center(row, space-between, center);
+    max-width: 1120px; // примерно max-w-7xl
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .menu-button-mobile {
+    display: none;
+    @include flex-center();
+    padding: 0.5rem;
+    color: $color-gray-light;
+    border-radius: $radius-default;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: $color-gray-dark;
+      color: $color-white;
+      outline: none;
+      box-shadow: 0 0 0 2px $color-white;
+    }
+
+    @media (max-width: $media-mobile) {
+      display: flex;
+    }
+  }
+
+  .logo {
+    img {
+      height: 2rem; // 8 * 4px = 32px
+      width: auto;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: $gap-default;
+
+    @media (max-width: $media-mobile) {
+      display: none;
+    }
+
+    a {
+      padding: 0.5rem 0.75rem;
+      border-radius: $radius-default;
+      font-size: $font-size-description;
+      font-weight: $font-weight-bold;
+      color: $color-gray-light;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+
+      &.active,
+      &:hover {
+        background-color: $color-gray-dark-active;
+        color: $color-white;
+      }
+    }
+  }
+
+  .actions {
+    @include flex-center(row, center, center);
+    gap: 1rem;
+
+    button {
+      position: relative;
+      background-color: $color-bg;
+      border: none;
+      padding: 0.25rem;
+      border-radius: 50%;
+      color: $color-gray-light;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        color: $color-white;
+        outline: none;
+        box-shadow: 0 0 0 2px $color-white;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .profile-menu {
+      position: relative;
+
+      .menu-button {
+        @include flex-center();
+        border-radius: 50%;
+        overflow: hidden;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        border: none;
+        background-color: $color-bg;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+
+      .menu-items {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 0.5rem);
+        background: $color-white;
+        border-radius: $radius-default;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        width: 12rem;
+        z-index: 1000;
+        display: none;
+
+        &.open {
+          display: block;
+        }
+
+        a {
+          display: block;
+          padding: 0.5rem 1rem;
+          font-size: $font-size-description;
+          color: $color-gray-dark-text;
+          text-decoration: none;
+
+          &:hover,
+          &:focus {
+            background-color: $color-gray-light-hover;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  // Мобильное меню панель
+  .mobile-menu-panel {
+    display: none;
+
+    @media (max-width: $media-mobile) {
+      display: block;
+      padding: 0.5rem 1rem;
+      background-color: $color-bg;
+
+      a {
+        display: block;
+        padding: 0.5rem 1rem;
+        border-radius: $radius-default;
+        font-size: $font-size-description;
+        color: $color-gray-light;
+        text-decoration: none;
+        margin-bottom: $margin-bottom-default;
+
+        &:hover,
+        &:focus {
+          background-color: $color-gray-dark-active;
+          color: $color-white;
+          outline: none;
+        }
+      }
+    }
+  }
+}

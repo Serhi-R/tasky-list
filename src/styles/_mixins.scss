@@ -1,0 +1,14 @@
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin card-box($width, $height, $padding, $radius, $box-shadow) {
+    width: $width;
+    height: $height;
+    padding: $padding;
+    border-radius: $radius;
+    box-shadow: $box-shadow;
+}

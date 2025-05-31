@@ -1,0 +1,28 @@
+// Color
+$color-bg: #1f2937; // bg-gray-800
+$color-white: #ffffff;
+$color-gray-light: #d1d5db; // text-gray-300
+$color-gray-dark: #374151; // bg-gray-700
+$color-gray-dark-active: #111827; // bg-gray-900
+$color-gray-dark-hover: #4b5563; // hover оттенок
+$color-gray-dark-hover-alpha: rgba(75, 85, 99, 0.7);
+$color-gray-dark-border: #6b7280;
+$color-gray-light-hover: #f3f4f6; // светлый hover для dropdown
+$color-gray-dark-text: #4b5563; // для текста dropdown
+
+// Size
+$padding-default: 20px;
+$gap-default: 20px;
+$radius-default: 12px;
+$box-shadow-default: -12px 12px 2px 1px $color-gray-dark-border;
+$margin-bottom-default: 10px;
+
+// Fonts
+$font-size-title: 32px;
+$font-size-subtitle: 18px;
+$font-size-description: 14px;
+$font-size-small: 10px;
+$font-weight-bold: bold;
+
+// Adaptive
+$media-mobile: 768px;
