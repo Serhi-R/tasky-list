@@ -1,28 +1,29 @@
-// Color
-$color-bg: #1f2937; // bg-gray-800
-$color-white: #ffffff;
-$color-gray-light: #d1d5db; // text-gray-300
-$color-gray-dark: #374151; // bg-gray-700
-$color-gray-dark-active: #111827; // bg-gray-900
-$color-gray-dark-hover: #4b5563; // hover оттенок
-$color-gray-dark-hover-alpha: rgba(75, 85, 99, 0.7);
-$color-gray-dark-border: #6b7280;
-$color-gray-light-hover: #f3f4f6; // светлый hover для dropdown
-$color-gray-dark-text: #4b5563; // для текста dropdown
+// Цвета
+$color-white: #f5f5f5;
+$color-purple: #9000ff;
+$color-purple-border: rgba(112, 29, 185, 0.4);
+$color-dark: #010101;
 
-// Size
+// Размеры
 $padding-default: 20px;
 $gap-default: 20px;
 $radius-default: 12px;
-$box-shadow-default: -12px 12px 2px 1px $color-gray-dark-border;
+$box-shadow-default: -12px 12px 2px 1px $color-purple-border;
 $margin-bottom-default: 10px;
 
-// Fonts
+// Шрифты
 $font-size-title: 32px;
 $font-size-subtitle: 18px;
 $font-size-description: 14px;
 $font-size-small: 10px;
 $font-weight-bold: bold;
 
-// Adaptive
+// Адаптив
 $media-mobile: 768px;
+
+// Иконки
+$icon-width: 28px;
+$icon-height: 28px;
+$icon-padding: 6px;
+$icon-border-radius: 50%;
+$icon-border: 1px solid $color-purple;

@@ -1,102 +1,114 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import './Header.scss';
+'use client';
 
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Task', href: '#', current: false },
-  { name: '', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Button from '@mui/material/Button';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import logoIcon from '../../../public/main-logo.svg';
 
 export default function Header() {
-  return (
-    <Disclosure as="nav" className="header-nav">
-      <div className="header-container">
-        <div className="header-inner">
-          <div className="mobile-menu-button">
-            <DisclosureButton className="mobile-button">
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="icon-bars" />
-              <XMarkIcon aria-hidden="true" className="icon-close" />
-            </DisclosureButton>
-          </div>
+    const headerTxtBtns = [
+        { text: 'Dashboard', path: '/' },
+        { text: 'Task', path: '/task' },
+        
+    ];
+    const loginSignupBtns = [
+        { text: 'Login', path: '/sign-in' },
+        { text: 'Sign Up', path: '/sign-up' },
+    ];
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-          <div className="header-left">
-            <div className="logo">
-              <img
-                alt="Your Company"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-              />
+    return (
+        <header className="header">
+            <div className="header__brand">
+                <Link href="/" passHref legacyBehavior>
+                    <a>
+                        <Image
+                            priority={true}
+                            className="header__logo"
+                            src={logoIcon}
+                            alt="Logo"
+                            width={55}
+                            height={55}
+                        />
+                    </a>
+                </Link>
+                <h1 className="header__brand-name">
+                    Tasky
+                </h1>
             </div>
 
-            <div className="nav-links">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  aria-current={item.current ? 'page' : undefined}
-                  className={classNames(
-                    item.current ? 'active-link' : 'link',
-                  )}
+            <nav className="header__navigation">
+                <button
+                    type="button"
+                    className="header__toggle"
+                    onClick={() => setIsMenuOpen(prev => !prev)}
+                    aria-label="Toggle menu"
                 >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-          </div>
+                    {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                </button>
+                <ul
+                    className={`header__menu ${isMenuOpen ? 'header__menu--active' : ''}`}
+                >
+                    {headerTxtBtns.map(({ text, path }, index) => (
+                        <li key={index} className="header__menu-item">
+                            <Link href={path} className="header__menu-link">
+                                <Button
+                                    variant="outlined"
+                                    sx={{
+                                        width: '120px',
+                                        color: '#9000ff',
+                                        border: 'none',
+                                        borderRadius: '0',
+                                        fontSize: '1rem',
+                                        textTransform: 'capitalize',
+                                    }}
+                                >
+                                    {text}
+                                </Button>
+                            </Link>
+                        </li>
+                    ))}
 
-          <div className="header-right">
-            <button type="button" className="notification-button">
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="icon-bell" />
-            </button>
+                    {isMenuOpen &&
+                        loginSignupBtns.map(({ text, path }, index) => (
+                            <li key={index} className="header__menu-item">
+                                <Link href={path} className="header__menu-link">
+                                    <Button
+                                        variant="outlined"
+                                        sx={{
+                                            width: '120px',
+                                            color: '#9000ff',
+                                            border: 'none',
+                                            borderRadius: '0',
+                                            fontSize: '1rem',
+                                            textTransform: 'capitalize',
+                                        }}
+                                    >
+                                        {text}
+                                    </Button>
+                                </Link>
+                            </li>
+                        ))}
+                </ul>
 
-            <Menu as="div" className="profile-menu">
-              <div>
-                <MenuButton className="profile-button">
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    alt=""
-                    src=""
-                  />
-                </MenuButton>
-              </div>
-              <MenuItems className="profile-dropdown">
-                <MenuItem>
-                  <a href="#" className="dropdown-link">Your Profile</a>
-                </MenuItem>
-                <MenuItem>
-                  <a href="#" className="dropdown-link">Settings</a>
-                </MenuItem>
-                <MenuItem>
-                  <a href="#" className="dropdown-link">Sign out</a>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
-          </div>
-        </div>
-      </div>
-
-      <DisclosurePanel className="mobile-panel">
-        {navigation.map((item) => (
-          <DisclosureButton
-            key={item.name}
-            as="a"
-            href={item.href}
-            aria-current={item.current ? 'page' : undefined}
-            className={classNames(
-              item.current ? 'active-link-mobile' : 'link-mobile',
-            )}
-          >
-            {item.name}
-          </DisclosureButton>
-        ))}
-      </DisclosurePanel>
-    </Disclosure>
-  );
+                <div className="header__auth">
+                    {loginSignupBtns.map(({ text, path }, index) => (
+                        <div
+                            key={index}
+                            className={`header__auth-item ${
+                                index === 0 ? 'header__auth-item--divider' : ''
+                            }`}
+                        >
+                            <Link href={path} className="header__auth-link">
+                                <Button variant="outlined">{text}</Button>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+            </nav>
+        </header>
+    );
 }
